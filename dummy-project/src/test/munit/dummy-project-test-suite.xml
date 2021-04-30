@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<munit:config name="dummy-project-test-suite.xml" />
+	<munit:test name="dummy-project-test-suite-dummy-projectFlowTest" doc:id="2edf140e-ccbc-4842-9f63-1c00fd623649" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummy-projectFlow" doc:id="f48dd716-c6e0-466f-aa58-7bda540d4318" name="dummy-projectFlow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="0547c5f6-e750-4fe3-8512-db15eb0c9982" is='#[MunitTools::startsWith("Hi")]' message="paylaod doesnt start with Hi " expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-project-test-suite-dummy-projectFlowTest1" doc:id="fd472c11-2f82-4d4a-87be-3e681fb23353" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummy-projectFlow" doc:id="4febb0a1-e723-4842-8124-d7eb20b88829" name="dummy-projectFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="b3f07434-e83e-4d68-a81d-930849793464" actual="#[payload]" expected='#["Hi Dummy"]' message="check your payload"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
